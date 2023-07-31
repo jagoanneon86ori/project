@@ -175,7 +175,7 @@ cat>/etc/xray/v2ray-$user-tls.json<<EOF
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
-      "path": "/worryfree/",
+      "path": "/worryfree",
       "type": "none",
       "host": "",
       "tls": "tls"
@@ -190,7 +190,7 @@ cat>/etc/xray/v2ray-$user-nontls.json<<EOF
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
-      "path": "/worryfree/",
+      "path": "/worryfree",
       "type": "none",
       "host": "${bug}",
       "tls": "none"
