@@ -203,7 +203,6 @@ xrayv2ray2="vmess://$(base64 -w 0 /etc/xray/v2ray-$user-nontls.json)"
 systemctl restart xray@v2ray-tls
 systemctl restart xray@v2ray-nontls
 service cron restart
-systemctl restart xray
 CHATID="$CHATID"
 KEY="$KEY"
 TIME="$TIME"
