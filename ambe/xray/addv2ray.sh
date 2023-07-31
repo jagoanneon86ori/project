@@ -214,13 +214,13 @@ TEXT="<code>-----------------------</code>
 CITY           : $CITY
 ISP            : $ISP
 Domain         : ${domain}
-Port TLS       : 443
-Port none TLS  : 80
+Port TLS       : 8443
+Port none TLS  : 8880
 id             : ${uuid}
 alterId        : 0
 Security       : auto
 network        : ws
-path           : /worryfree/</code>
+path           : /worryfree</code>
 <code>-----------------------</code>
 <code> VMESS WS TLS</code>
 <code>-----------------------</code>
