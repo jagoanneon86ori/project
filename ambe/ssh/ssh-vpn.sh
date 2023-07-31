@@ -162,16 +162,16 @@ END
 
 sleep 1
 # Ubah izin akses
-echo -e "[ ${tyblue}NOTES${NC} ] Ubah izin akses"
+echo -e "[ ${BLUE}NOTES${NC} ] Ubah izin akses"
 chmod +x /etc/rc.local
 sleep 1
 # enable rc local
-echo -e "[ ${tyblue}NOTES${NC} ] enable rc local"
+echo -e "[ ${BLUE}NOTES${NC} ] enable rc local"
 systemctl enable rc-local
 systemctl start rc-local.service
 
 # disable ipv6
-echo -e "[ ${tyblue}NOTES${NC} ] disable ipv6 "
+echo -e "[ ${BLUE}NOTES${NC} ] disable ipv6 "
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 
@@ -179,7 +179,7 @@ sleep 1
 #update
 clear
 echo ""
-echo -e "[ ${tyblue}NOTES${NC} ] Processing All Install"
+echo -e "[ ${BLUE}NOTES${NC} ] Processing All Install"
 sleep 1
 echo -e "[ ${GREEN}INFO${NC} ] update..."
 apt update -y >/dev/null 2>&1
@@ -260,11 +260,11 @@ echo -e "[ ${GREEN}INFO${NC} ] install dos2unix..."
 apt install dos2unix -y >/dev/null 2>&1
 
 # set time GMT +7
-echo -e "[ ${tyblue}NOTES${NC} ] set time GMT +7"
+echo -e "[ ${BLUE}NOTES${NC} ] set time GMT +7"
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
 # set locale
-echo -e "[ ${tyblue}NOTES${NC} ] set locale"
+echo -e "[ ${BLUE}NOTES${NC} ] set locale"
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 
 #INSTALL FONTS
@@ -313,7 +313,7 @@ screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
 
 # setting port ssh
-echo -e "[ ${tyblue}NOTES${NC} ] setting port ssh"
+echo -e "[ ${BLUE}NOTES${NC} ] setting port ssh"
 sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
 
 
@@ -360,7 +360,7 @@ RUN=yes
 # systemd users: don't forget to modify /lib/systemd/system/sslh.service
 DAEMON=/usr/sbin/sslh
 
-DAEMON_OPTS="--user sslh --listen 0.0.0.0:443 --ssl 127.0.0.1:777 --ssh 127.0.0.1:109 --openvpn 127.0.0.1:1194 --http 127.0.0.1:8880 --pidfile /var/run/sslh/sslh.pid -n"
+DAEMON_OPTS="--user sslh --listen 0.0.0.0:443 --ssl 127.0.0.1:777 --ssh 127.0.0.1:109 --openvpn 127.0.0.1:1194 --http 127.0.0.1:80 --pidfile /var/run/sslh/sslh.pid -n"
 
 END
 
@@ -413,7 +413,7 @@ mkdir -p /etc/stunnel5
 chmod 644 /etc/stunnel5
 
 # Download Config Stunnel5
-echo -e "[ ${tyblue}NOTES${NC} ] Download Config Stunnel5"
+echo -e "[ ${BLUE}NOTES${NC} ] Download Config Stunnel5"
 cat > /etc/stunnel5/stunnel5.conf <<-END
 cert = /etc/stunnel5/stunnel5.pem
 client = no
@@ -436,14 +436,14 @@ connect = 127.0.0.1:1194
 END
 
 # make a certificate
-echo -e "[ ${tyblue}NOTES${NC} ] make a certificate "
+echo -e "[ ${BLUE}NOTES${NC} ] make a certificate "
 openssl genrsa -out key.pem 2048
 openssl req -new -x509 -key key.pem -out cert.pem -days 1095 \
 -subj "/C=$country/ST=$state/L=$locality/O=$organization/OU=$organizationalunit/CN=$commonname/emailAddress=$email"
 cat key.pem cert.pem >> /etc/stunnel5/stunnel5.pem
 
 # Service Stunnel5 systemctl restart stunnel5
-echo -e "[ ${tyblue}NOTES${NC} ] Service Stunnel5 systemctl restart stunnel5 "
+echo -e "[ ${BLUE}NOTES${NC} ] Service Stunnel5 systemctl restart stunnel5 "
 cat > /etc/systemd/system/stunnel5.service << END
 [Unit]
 Description=Stunnel5 Service
@@ -460,17 +460,17 @@ WantedBy=multi-user.target
 END
 
 # Service Stunnel5 /etc/init.d/stunnel5
-echo -e "[ ${tyblue}NOTES${NC} ] Service Stunnel5 /etc/init.d/stunnel5 "
+echo -e "[ ${BLUE}NOTES${NC} ] Service Stunnel5 /etc/init.d/stunnel5 "
 wget -q -O /etc/init.d/stunnel5 "https://${Server_URL}/stunnel5/stunnel5.init"
 
 # Ubah Izin Akses
-echo -e "[ ${tyblue}NOTES${NC} ] Ubah Izin Akses "
+echo -e "[ ${BLUE}NOTES${NC} ] Ubah Izin Akses "
 chmod 600 /etc/stunnel5/stunnel5.pem
 chmod +x /etc/init.d/stunnel5
 cp /usr/local/bin/stunnel /usr/local/geovpn/stunnel5
 
 # Remove File
-echo -e "[ ${tyblue}NOTES${NC} ] Remove File "
+echo -e "[ ${BLUE}NOTES${NC} ] Remove File "
 rm -r -f /usr/local/share/doc/stunnel/
 rm -r -f /usr/local/etc/stunnel/
 rm -f /usr/local/bin/stunnel
@@ -479,7 +479,7 @@ rm -f /usr/local/bin/stunnel4
 rm -f /usr/local/bin/stunnel5
 
 # Restart Stunnel 5
-echo -e "[ ${tyblue}NOTES${NC} ] Restart Stunnel 5 "
+echo -e "[ ${BLUE}NOTES${NC} ] Restart Stunnel 5 "
 systemctl stop stunnel5
 systemctl enable stunnel5
 systemctl start stunnel5
@@ -507,7 +507,7 @@ echo "Banner /etc/issue.net" >>/etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 
 # blockir torrent
-echo -e "[ ${tyblue}NOTES${NC} ] Blokir torrent "
+echo -e "[ ${BLUE}NOTES${NC} ] Blokir torrent "
 iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
 iptables -A FORWARD -m string --string "announce_peer" --algo bm -j DROP
 iptables -A FORWARD -m string --string "find_node" --algo bm -j DROP
