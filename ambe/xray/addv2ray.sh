@@ -170,14 +170,14 @@ cat>/etc/xray/v2ray-$user-tls.json<<EOF
       {
       "v": "2",
       "ps": "${user}",
-      "add": "${domain}",
+      "add": "${bug}",
       "port": "${tls}",
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
       "path": "/worryfree",
       "type": "none",
-      "host": "",
+      "host": "${domain}",
       "tls": "tls"
 }
 EOF
@@ -185,14 +185,14 @@ cat>/etc/xray/v2ray-$user-nontls.json<<EOF
       {
       "v": "2",
       "ps": "${user}",
-      "add": "${domain}",
+      "add": "${bug}",
       "port": "${nontls}",
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
       "path": "/worryfree",
       "type": "none",
-      "host": "${bug}",
+      "host": "${domain}",
       "tls": "none"
 }
 EOF
