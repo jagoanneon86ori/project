@@ -249,7 +249,7 @@ echo -e "id              : ${uuid}" | tee -a /etc/log-create-user.log
 echo -e "alterId         : 0" | tee -a /etc/log-create-user.log
 echo -e "Security        : auto" | tee -a /etc/log-create-user.log
 echo -e "network         : ws" | tee -a /etc/log-create-user.log
-echo -e "path            : /worryfree/" | tee -a /etc/log-create-user.log
+echo -e "path            : /worryfree" | tee -a /etc/log-create-user.log
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
 echo -e "Link TLS        : ${xrayv2ray1}" | tee -a /etc/log-create-user.log
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
