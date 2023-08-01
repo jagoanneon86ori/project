@@ -115,11 +115,17 @@ echo ""
 #cek port dan tampilkan
 
 ws="$(cat ~/log-install.txt | grep -w "Websocket TLS" | cut -d: -f2|sed 's/ //g')"
+open="$(cat ~/log-install.txt | grep -w "OpenSSH" | cut -d: -f2|sed 's/ //g')"
+drop="$(cat ~/log-install.txt | grep -w "Dropbear" | cut -d: -f2|sed 's/ //g')"
+stun="$(cat ~/log-install.txt | grep -w "Stunnel5" | cut -d: -f2|sed 's/ //g')"
 
 #input port untuk pengganti
 echo -e "======================================"
 echo -e ""
 echo -e "Change Port $ws"
+echo -e "Change Port $open"
+echo -e "Change Port $drop"
+echo -e "Change Port $stun"
 echo -e ""
 echo -e "======================================"
 read -p "New Port SSH WS : " ws2
@@ -134,12 +140,19 @@ if [[ -z $cek ]]; then
 #ganti port layanan
 sed -i "s/$ws/$ws2/g" /etc/default/sslh
 sed -i "s/$ws/$ws2/g" /etc/stunnel5/stunnel5.conf
+sed -i "s/$open/$ws2/g" /root/log-install.txt
+sed -i "s/$drop/$ws2/g" /root/log-install.txt
+sed -i "s/$stun/$ws2/g" /root/log-install.txt
 sed -i "s/   - Websocket TLS           : $ws/   - Websocket TLS           : $ws2/g" /root/log-install.txt
+sed -i "s/   - OpenSSH           : $open/   - OpenSSH           : $ws2/g" /root/log-install.txt
+sed -i "s/   - Dropbear           : $drop/   - Dropbear           : $ws2/g" /root/log-install.txt
+sed -i "s/   - Stunnel5           : $stun/   - Stunnel5           : $ws2/g" /root/log-install.txt
 
 iptables -D INPUT -m state --state NEW -m tcp -p tcp --dport $ws -j ACCEPT
 iptables -D INPUT -m state --state NEW -m udp -p udp --dport $ws -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport $ws2 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport $ws2 -j ACCEPT
+
 iptables-save > /etc/iptables.up.rules
 iptables-restore -t < /etc/iptables.up.rules
 netfilter-persistent save > /dev/null
@@ -161,3 +174,4 @@ fi
 
 
 #done 
+
