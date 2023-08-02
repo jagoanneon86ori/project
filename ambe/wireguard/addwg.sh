@@ -112,18 +112,7 @@ date
 echo ""
 # Load params
 source /etc/wireguard/params
-source /var/lib/geovpnstore/ipvps.conf
-if [[ "$IP" = "" ]]; then
-SERVER_PUB_IP=$(wget -qO- ipinfo.io/ip);
-else
-SERVER_PUB_IP=$IP
-fi
-source /var/lib/geovpnstore/ipvps.conf
-if [[ "$IP2" = "" ]]; then
 domain=$(cat /etc/xray/domain)
-else
-domain=$IP2
-fi
 echo ""
 portwg="$(cat ~/log-install.txt | grep -w "Wireguard" | cut -d: -f2|sed 's/ //g')"
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
@@ -200,7 +189,7 @@ echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━�
 echo -e "\E[44;1;39m       ⇱ WIREGUARD ACCOUNT ⇲       \E[0m" | tee -a /etc/log-create-user.log
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
 echo -e "Remarks  : $CLIENT_NAME"
-echo -e "IP/Host  : $MYIP"
+echo -e "IP/Host  : $IP"
 echo -e "Domain   : $domain"
 echo -e "Port     : $portwg"
 echo -e "Created  : $hariini"
