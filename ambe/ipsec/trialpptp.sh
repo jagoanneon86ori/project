@@ -113,12 +113,7 @@ echo ""
 PPTPTrial=trial`</dev/urandom tr -dc A-Z0-9 | head -c4`
 Hariii=1
 Passss=1
-source /var/lib/geovpnstore/ipvps.conf
-if [[ "$IP" = "" ]]; then
 PUBLIC_IP=$(curl -sS ifconfig.me);
-else
-PUBLIC_IP=$IP
-fi
 
 until [[ $PPTPTrial =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 

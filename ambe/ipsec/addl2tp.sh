@@ -109,12 +109,6 @@ else
 fi
 clear
 echo ""
-source /var/lib/geovpnstore/ipvps.conf
-if [[ "$IP" = "" ]]; then
-PUBLIC_IP=$(curl -sS ifconfig.me);
-else
-PUBLIC_IP=$IP
-fi
 domain=$(cat /etc/xray/domain)
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "\E[41;1;39m          ⇱ L2TP ACCOUNT ⇲         \E[0m"

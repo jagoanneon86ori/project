@@ -110,12 +110,7 @@ fi
 clear
 date
 echo ""
-source /var/lib/geovpnstore/ipvps.conf
-if [[ "$IP" = "" ]]; then
 PUBLIC_IP=$(curl -sS ifconfig.me);
-else
-PUBLIC_IP=$IP
-fi
 domain=$(cat /etc/xray/domain)
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
 echo -e "\E[41;1;39m  ⇱ PPTP ACCOUNT ⇲ \E[0m" | tee -a /etc/log-create-user.log
