@@ -110,12 +110,7 @@ fi
 clear
 date
 echo ""
-source /var/lib/geovpnstore/ipvps.conf
-if [[ "$IP" = "" ]]; then
 domain=$(cat /etc/xray/domain)
-else
-domain=$IP
-fi
 # Create Expried 
 masaaktif="1"
 exp=$(date -d "$masaaktif days" +"%Y-%m-%d")

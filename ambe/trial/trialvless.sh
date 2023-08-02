@@ -110,12 +110,7 @@ fi
 clear
 date
 echo ""
-source /var/lib/geovpnstore/ipvps.conf
-if [[ "$IP" = "" ]]; then
 domain=$(cat /etc/xray/domain)
-else
-domain=$IP
-fi
 tls="$(cat ~/log-install.txt | grep -w "Vless TLS" | cut -d: -f2|sed 's/ //g')"
 nontls="$(cat ~/log-install.txt | grep -w "Vless None TLS" | cut -d: -f2|sed 's/ //g')"
 # Create Expried 

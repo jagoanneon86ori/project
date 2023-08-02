@@ -116,12 +116,7 @@ COUNTRY=$(curl -s ipinfo.io/country )
 
 MYIP=$(wget -qO- ipinfo.io/ip);
 clear
-source /var/lib/geovpnstore/ipvps.conf
-if [[ "$IP2" = "" ]]; then
 domain=$(cat /etc/xray/domain)
-else
-domain=$IP2
-fi
 lastport1=$(grep "port_tls" /etc/shadowsocks-libev/akun.conf | tail -n1 | awk '{print $2}')
 lastport2=$(grep "port_http" /etc/shadowsocks-libev/akun.conf | tail -n1 | awk '{print $2}')
 if [[ $lastport1 == '' ]]; then

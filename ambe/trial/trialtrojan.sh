@@ -117,12 +117,7 @@ COUNTRY=$(curl -s ipinfo.io/country )
 MYIP=$(curl -sS ipinfo.io/ip)
 clear
 tr="$(cat ~/log-install.txt | grep -w "Trojan" | cut -d: -f2|sed 's/ //g')"
-source /var/lib/geovpnstore/ipvps.conf
-if [[ "$IP" = "" ]]; then
 domain=$(cat /etc/xray/domain)
-else
-domain=$IP
-fi
 # Create Expried 
 masaaktif="1"
 exp=$(date -d "$masaaktif days" +"%Y-%m-%d")

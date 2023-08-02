@@ -118,12 +118,8 @@ MYIP=$(wget -qO- ipinfo.io/ip);
 clear
 # Load params
 source /etc/wireguard/params
-source /var/lib/geovpnstore/ipvps.conf
-if [[ "$IP" = "" ]]; then
+
 SERVER_PUB_IP=$(cat /etc/xray/domain);
-else
-SERVER_PUB_IP=$IP
-fi
 
 # Create Expried 
 masaaktif="1"

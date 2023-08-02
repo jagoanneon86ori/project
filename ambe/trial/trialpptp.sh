@@ -116,12 +116,7 @@ COUNTRY=$(curl -s ipinfo.io/country )
 
 MYIP=$(wget -qO- ipinfo.io/ip);
 clear
-source /var/lib/geovpnstore/ipvps.conf
-if [[ "$IP" = "" ]]; then
-PUBLIC_IP=$(cat /etc/xray/domain);
-else
-PUBLIC_IP=$IP
-fi
+domain=$(cat /etc/xray/domain)
 
 # Create Expried 
 masaaktif="1"

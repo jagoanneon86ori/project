@@ -115,13 +115,7 @@ CITY=$(curl -s ipinfo.io/city )
 COUNTRY=$(curl -s ipinfo.io/country )
 MYIP=$(curl -sS ipinfo.io/ip)
 clear
-source /var/lib/geovpnstore/ipvps.conf
-if [[ "$IP" = "" ]]; then
 domain=$(cat /etc/xray/domain)
-else
-domain=$IP
-fi
-
 # Create Expried 
 masaaktif="1"
 exp=$(date -d "$masaaktif days" +"%Y-%m-%d")

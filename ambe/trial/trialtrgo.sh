@@ -116,12 +116,7 @@ COUNTRY=$(curl -s ipinfo.io/country )
 MYIP=$(curl -sS ipinfo.io/ip)
 clear
 uuid=$(cat /etc/trojan-go/uuid.txt)
-source /var/lib/geovpnstore/ipvps.conf
-if [[ "$IP" = "" ]]; then
 domain=$(cat /etc/xray/domain)
-else
-domain=$IP
-fi
 trgo="$(cat ~/log-install.txt | grep -w "Tr Go" | cut -d: -f2|sed 's/ //g')"
 # Create Expried 
 masaaktif="1"
