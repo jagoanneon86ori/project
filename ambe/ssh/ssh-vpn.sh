@@ -313,7 +313,7 @@ screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
 
 # setting port ssh
-echo -e "[ ${BLUE}NOTES${NC} ] setting port ssh"
+echo -e "[ ${CYAN}NOTES${NC} ] setting port ssh"
 sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
 
 
@@ -341,7 +341,7 @@ apt -y install sslh
 rm -f /etc/default/sslh
 
 # Settings SSLH
-echo -e "[ ${tyblue}NOTES${NC} ] Settings SSLH"
+echo -e "[ ${CYAN}NOTES${NC} ] Settings SSLH"
 cat > /etc/default/sslh <<-END
 # Default options for sslh initscript
 # sourced by /etc/init.d/sslh
@@ -365,7 +365,7 @@ DAEMON_OPTS="--user sslh --listen 0.0.0.0:443 --ssl 127.0.0.1:777 --ssh 127.0.0.
 END
 
 # Restart Service SSLH
-echo -e "[ ${tyblue}NOTES${NC} ] Restart Service SSLH"
+echo -e "[ ${CYAN}NOTES${NC} ] Restart Service SSLH"
 ###############$$$$
 service sslh restart
 systemctl restart sslh
@@ -413,7 +413,7 @@ mkdir -p /etc/stunnel5
 chmod 644 /etc/stunnel5
 
 # Download Config Stunnel5
-echo -e "[ ${BLUE}NOTES${NC} ] Download Config Stunnel5"
+echo -e "[ ${CYAN}NOTES${NC} ] Download Config Stunnel5"
 cat > /etc/stunnel5/stunnel5.conf <<-END
 cert = /etc/stunnel5/stunnel5.pem
 client = no
@@ -436,14 +436,14 @@ connect = 127.0.0.1:1194
 END
 
 # make a certificate
-echo -e "[ ${BLUE}NOTES${NC} ] make a certificate "
+echo -e "[ ${CYAN}NOTES${NC} ] make a certificate "
 openssl genrsa -out key.pem 2048
 openssl req -new -x509 -key key.pem -out cert.pem -days 1095 \
 -subj "/C=$country/ST=$state/L=$locality/O=$organization/OU=$organizationalunit/CN=$commonname/emailAddress=$email"
 cat key.pem cert.pem >> /etc/stunnel5/stunnel5.pem
 
 # Service Stunnel5 systemctl restart stunnel5
-echo -e "[ ${BLUE}NOTES${NC} ] Service Stunnel5 systemctl restart stunnel5 "
+echo -e "[ ${CYAN}NOTES${NC} ] Service Stunnel5 systemctl restart stunnel5 "
 cat > /etc/systemd/system/stunnel5.service << END
 [Unit]
 Description=Stunnel5 Service
@@ -460,11 +460,11 @@ WantedBy=multi-user.target
 END
 
 # Service Stunnel5 /etc/init.d/stunnel5
-echo -e "[ ${BLUE}NOTES${NC} ] Service Stunnel5 /etc/init.d/stunnel5 "
+echo -e "[ ${CYAN}NOTES${NC} ] Service Stunnel5 /etc/init.d/stunnel5 "
 wget -q -O /etc/init.d/stunnel5 "https://${Server_URL}/stunnel5/stunnel5.init"
 
 # Ubah Izin Akses
-echo -e "[ ${BLUE}NOTES${NC} ] Ubah Izin Akses "
+echo -e "[ ${CYAN}NOTES${NC} ] Ubah Izin Akses "
 chmod 600 /etc/stunnel5/stunnel5.pem
 chmod +x /etc/init.d/stunnel5
 cp /usr/local/bin/stunnel /usr/local/geovpn/stunnel5
@@ -613,6 +613,16 @@ wget -O trialv2ray "https://${Server_URL}/trial/trialv2ray.sh" >/dev/null 2>&1
 wget -O trialvless "https://${Server_URL}/trial/trialvless.sh" >/dev/null 2>&1
 wget -O trialwg "https://${Server_URL}/trial/trialwg.sh" >/dev/null 2>&1
 wget -O trialtrgo "https://${Server_URL}/trial/trialtrgo.sh" >/dev/null 2>&1
+wget -O addtrgo "https://${Server_URL}/trojango/addtrgo.sh" >/dev/null 2>&1
+wget -O cektrgo "https://${Server_URL}/trojango/cektrgo.sh" >/dev/null 2>&1
+wget -O deltrgo "https://${Server_URL}/trojango/deltrgo.sh" >/dev/null 2>&1
+wget -O porttrgo "https://${Server_URL}/trojango/porttrgo.sh" >/dev/null 2>&1
+wget -O renewtrgo "https://${Server_URL}/trojango/renewtrgo.sh" >/dev/null 2>&1
+chmod +x addtrgo >/dev/null 2>&1
+chmod +x cektrgo >/dev/null 2>&1
+chmod +x deltrgo >/dev/null 2>&1
+chmod +x porttrgo >/dev/null 2>&1
+chmod +x renewtrgo >/dev/null 2>&1
 chmod +x trialpptp >/dev/null 2>&1
 chmod +x trialss >/dev/null 2>&1
 chmod +x onoffservice
@@ -690,18 +700,12 @@ chmod +x menu-wireguard >/dev/null 2>&1
 chmod +x running >/dev/null 2>&1
 chmod +x status >/dev/null 2>&1
 chmod +x bbr >/dev/null 2>&1
-#chmod +x update >/dev/null 2>&1
 chmod +x portwsnon >/dev/null 2>&1
 chmod +x portwstls >/dev/null 2>&1
-#chmod +x cfd >/dev/null 2>&1
-#chmod +x cff >/dev/null 2>&1
-#chmod +x cfh >/dev/null 2>&1
-chmod +x domen
 chmod +x setting-menu
 chmod +x system-menu
 chmod +x cloudflare-pointing
 chmod +x cloudflare-setting
-chmod +x domen
 chmod +x pointing >/dev/null 2>&1
 chmod +x bw >/dev/null 2>&1
 chmod +x ipsec-menu
@@ -771,7 +775,7 @@ cd
 rm -f /root/key.pem
 rm -f /root/cert.pem
 rm -f /root/ssh-vpn.sh
-rm -r /root/lolcat
+#rm -r /root/lolcat
 
 # finihsing
 clear
