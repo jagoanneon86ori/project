@@ -120,13 +120,6 @@ domain=$(cat /etc/xray/domain)
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
 echo ""
-source /var/lib/geovpnstore/ipvps.conf
-if [[ "$IP" = "" ]]; then
-domain=$(cat /etc/xray/domain)
-else
-domain=$IP
-fi
-
 tls="$(cat ~/log-install.txt | grep -w "Vmess TLS" | cut -d: -f2|sed 's/ //g')"
 nontls="$(cat ~/log-install.txt | grep -w "Vmess None TLS" | cut -d: -f2|sed 's/ //g')"
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
@@ -170,14 +163,14 @@ cat>/etc/xray/v2ray-$user-tls.json<<EOF
       {
       "v": "2",
       "ps": "${user}",
-      "add": "${bug}",
+      "add": "${domain}",
       "port": "${tls}",
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
-      "path": "/worryfree",
+      "path": "/worryfree/",
       "type": "none",
-      "host": "${domain}",
+      "host": "",
       "tls": "tls"
 }
 EOF
@@ -185,14 +178,14 @@ cat>/etc/xray/v2ray-$user-nontls.json<<EOF
       {
       "v": "2",
       "ps": "${user}",
-      "add": "${bug}",
+      "add": "${domain}",
       "port": "${nontls}",
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
-      "path": "/worryfree",
+      "path": "/worryfree/",
       "type": "none",
-      "host": "${domain}",
+      "host": "${bug}",
       "tls": "none"
 }
 EOF
@@ -203,6 +196,7 @@ xrayv2ray2="vmess://$(base64 -w 0 /etc/xray/v2ray-$user-nontls.json)"
 systemctl restart xray@v2ray-tls
 systemctl restart xray@v2ray-nontls
 service cron restart
+systemctl restart xray
 CHATID="$CHATID"
 KEY="$KEY"
 TIME="$TIME"
@@ -214,13 +208,13 @@ TEXT="<code>-----------------------</code>
 CITY           : $CITY
 ISP            : $ISP
 Domain         : ${domain}
-Port TLS       : 8443
-Port none TLS  : 8880
+Port TLS       : 443
+Port none TLS  : 80
 id             : ${uuid}
 alterId        : 0
 Security       : auto
 network        : ws
-path           : /worryfree</code>
+path           : /worryfree/</code>
 <code>-----------------------</code>
 <code> VMESS WS TLS</code>
 <code>-----------------------</code>
@@ -249,7 +243,7 @@ echo -e "id              : ${uuid}" | tee -a /etc/log-create-user.log
 echo -e "alterId         : 0" | tee -a /etc/log-create-user.log
 echo -e "Security        : auto" | tee -a /etc/log-create-user.log
 echo -e "network         : ws" | tee -a /etc/log-create-user.log
-echo -e "path            : /worryfree" | tee -a /etc/log-create-user.log
+echo -e "path            : /worryfree/" | tee -a /etc/log-create-user.log
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
 echo -e "Link TLS        : ${xrayv2ray1}" | tee -a /etc/log-create-user.log
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log

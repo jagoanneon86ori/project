@@ -110,12 +110,7 @@ fi
 clear
 date
 echo ""
-source /var/lib/geovpnstore/ipvps.conf
-if [[ "$IP" = "" ]]; then
 domain=$(cat /etc/xray/domain)
-else
-domain=$IP
-fi
 tls="$(cat ~/log-install.txt | grep -w "Vless TLS" | cut -d: -f2|sed 's/ //g')"
 nontls="$(cat ~/log-install.txt | grep -w "Vless None TLS" | cut -d: -f2|sed 's/ //g')"
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
@@ -147,7 +142,7 @@ echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━\033
 echo -e "\E[44;1;39m  ⇱ Xray/Vless Account  ⇲ \E[0m" | tee -a /etc/log-create-user.log
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a /etc/log-create-user.log
 echo -e "Remarks     : ${user}" | tee -a /etc/log-create-user.log
-echo -e "IP/Host     : ${MYIP}" | tee -a /etc/log-create-user.log
+echo -e "IP/Host     : ${IP}" | tee -a /etc/log-create-user.log
 echo -e "Address     : ${domain}" | tee -a /etc/log-create-user.log
 echo -e "Port TLS    : $tls" | tee -a /etc/log-create-user.log
 echo -e "Port No TLS : $nontls" | tee -a /etc/log-create-user.log
