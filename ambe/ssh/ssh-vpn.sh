@@ -162,16 +162,16 @@ END
 
 sleep 1
 # Ubah izin akses
-echo -e "[ ${BLUE}NOTES${NC} ] Ubah izin akses"
+echo -e "[ ${CYAN}NOTES${NC} ] Ubah izin akses"
 chmod +x /etc/rc.local
 sleep 1
 # enable rc local
-echo -e "[ ${BLUE}NOTES${NC} ] enable rc local"
+echo -e "[ ${CYAN}NOTES${NC} ] enable rc local"
 systemctl enable rc-local
 systemctl start rc-local.service
 
 # disable ipv6
-echo -e "[ ${BLUE}NOTES${NC} ] disable ipv6 "
+echo -e "[ ${CYAN}NOTES${NC} ] disable ipv6 "
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 
@@ -179,7 +179,7 @@ sleep 1
 #update
 clear
 echo ""
-echo -e "[ ${BLUE}NOTES${NC} ] Processing All Install"
+echo -e "[ ${CYAN}NOTES${NC} ] Processing All Install"
 sleep 1
 echo -e "[ ${GREEN}INFO${NC} ] update..."
 apt update -y >/dev/null 2>&1
@@ -260,11 +260,11 @@ echo -e "[ ${GREEN}INFO${NC} ] install dos2unix..."
 apt install dos2unix -y >/dev/null 2>&1
 
 # set time GMT +7
-echo -e "[ ${BLUE}NOTES${NC} ] set time GMT +7"
+echo -e "[ ${CYAN}NOTES${NC} ] set time GMT +7"
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
 # set locale
-echo -e "[ ${BLUE}NOTES${NC} ] set locale"
+echo -e "[ ${CYAN}NOTES${NC} ] set locale"
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 
 #INSTALL FONTS
@@ -470,7 +470,7 @@ chmod +x /etc/init.d/stunnel5
 cp /usr/local/bin/stunnel /usr/local/geovpn/stunnel5
 
 # Remove File
-echo -e "[ ${BLUE}NOTES${NC} ] Remove File "
+echo -e "[ ${CYAN}NOTES${NC} ] Remove File "
 rm -r -f /usr/local/share/doc/stunnel/
 rm -r -f /usr/local/etc/stunnel/
 rm -f /usr/local/bin/stunnel
@@ -479,7 +479,7 @@ rm -f /usr/local/bin/stunnel4
 rm -f /usr/local/bin/stunnel5
 
 # Restart Stunnel 5
-echo -e "[ ${BLUE}NOTES${NC} ] Restart Stunnel 5 "
+echo -e "[ ${CYAN}NOTES${NC} ] Restart Stunnel 5 "
 systemctl stop stunnel5
 systemctl enable stunnel5
 systemctl start stunnel5
@@ -507,7 +507,7 @@ echo "Banner /etc/issue.net" >>/etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 
 # blockir torrent
-echo -e "[ ${BLUE}NOTES${NC} ] Blokir torrent "
+echo -e "[ ${CYAN}NOTES${NC} ] Blokir torrent "
 iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
 iptables -A FORWARD -m string --string "announce_peer" --algo bm -j DROP
 iptables -A FORWARD -m string --string "find_node" --algo bm -j DROP
@@ -702,10 +702,12 @@ chmod +x status >/dev/null 2>&1
 chmod +x bbr >/dev/null 2>&1
 chmod +x portwsnon >/dev/null 2>&1
 chmod +x portwstls >/dev/null 2>&1
+chmod +x domen
 chmod +x setting-menu
 chmod +x system-menu
 chmod +x cloudflare-pointing
 chmod +x cloudflare-setting
+chmod +x domen
 chmod +x pointing >/dev/null 2>&1
 chmod +x bw >/dev/null 2>&1
 chmod +x ipsec-menu
@@ -775,7 +777,7 @@ cd
 rm -f /root/key.pem
 rm -f /root/cert.pem
 rm -f /root/ssh-vpn.sh
-#rm -r /root/lolcat
+rm -r /root/lolcat
 
 # finihsing
 clear
