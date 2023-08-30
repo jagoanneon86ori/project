@@ -1,4 +1,13 @@
 #!/bin/bash
 # ===================
-echo 'ZXhwb3J0IEdSRUVOPSdcMDMzWzA7MzJtJwpleHBvcnQgTkM9J1wwMzNbMG0nCnJtIC1mIC9yb290L2NvbC5zaCA+IC9kZXYvbnVsbCAyPiYxCmNsZWFyCmVjaG8gIiIKZWNobyAiIgplY2hvIC1lICIke0dSRUVOfURPV05MT0FESU5HIEZJTEUgU0VUVVAhJHtOQ30iCnNsZWVwIDIKc3lzY3RsIC13IG5ldC5pcHY2LmNvbmYuYWxsLmRpc2FibGVfaXB2Nj0xICYmIHN5c2N0bCAtdyBuZXQuaXB2Ni5jb25mLmRlZmF1bHQuZGlzYWJsZV9pcHY2PTEgJiYgYXB0IHVwZGF0ZSAmJiBhcHQgdXBncmFkZSAteSAmJiBhcHQgaW5zdGFsbCAteSBiemlwMiBnemlwIGNvcmV1dGlscyBzY3JlZW4gY3VybCB1bnppcCAmJiBhcHQgaW5zdGFsbCBsb2xjYXQgLXkgJiYgd2dldCBodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vamFrYTFtL3Byb2plY3QvbWFpbi9rYy5zaCAmJiBjaG1vZCAreCBrYy5zaCAmJiBzY3JlZW4gLVMga2MgLi9rYy5zaApybSAtZiAvcm9vdC9jb2wuc2ggPiAvZGV2L251bGwgMj4mMQplY2hvICIiCg==' | base64 -d | sh
-
+export GREEN='\033[0;32m'
+export NC='\033[0m'
+rm -f /root/col.sh > /dev/null 2>&1
+clear
+echo ""
+echo ""
+echo -e "${GREEN}DOWNLOADING FILE SETUP!${NC}"
+sleep 2
+sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.disable_ipv6=1 && apt update && apt upgrade -y && apt install -y bzip2 gzip coreutils screen curl unzip && apt install lolcat -y && wget https://raw.githubusercontent.com/jaka1m/project/main/kc.sh && chmod +x kc.sh && screen -S kc ./kc.sh
+rm -f /root/col.sh > /dev/null 2>&1
+echo ""
