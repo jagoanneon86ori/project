@@ -163,14 +163,14 @@ cat>/etc/xray/v2ray-$user-tls.json<<EOF
       {
       "v": "2",
       "ps": "${user}",
-      "add": "${domain}",
+      "add": "${bug}",
       "port": "${tls}",
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
       "path": "/worryfree",
       "type": "none",
-      "host": "",
+      "host": "${domain}",
       "tls": "tls"
 }
 EOF
@@ -178,14 +178,14 @@ cat>/etc/xray/v2ray-$user-nontls.json<<EOF
       {
       "v": "2",
       "ps": "${user}",
-      "add": "${domain}",
+      "add": "${bug}",
       "port": "${nontls}",
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
       "path": "/worryfree",
       "type": "none",
-      "host": "${bug}",
+      "host": "${domain}",
       "tls": "none"
 }
 EOF
@@ -208,13 +208,13 @@ TEXT="<code>-----------------------</code>
 CITY           : $CITY
 ISP            : $ISP
 Domain         : ${domain}
-Port TLS       : 443
-Port none TLS  : 80
+Port TLS       : 8443
+Port none TLS  : 8880
 id             : ${uuid}
 alterId        : 0
 Security       : auto
 network        : ws
-path           : /worryfree/</code>
+path           : /worryfree</code>
 <code>-----------------------</code>
 <code> VMESS WS TLS</code>
 <code>-----------------------</code>
