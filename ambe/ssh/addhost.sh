@@ -113,19 +113,13 @@ echo ""
 read -rp "Domain/Host : " -e domain
 echo "IP=$domain" >>/var/lib/geovpnstore/ipvps.conf
 echo $domain > /etc/xray/domain
+echo $domain > /root/domain
 echo start
-systemctl stop xray@v2ray-tls
-systemctl stop xray@v2ray-nontls
-systemctl stop xray@vless-tls
-systemctl stop xray@vless-nontls
-systemctl stop xray@trojan
+systemctl stop ws-nontls
 /root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256
 ~/.acme.sh/acme.sh --installcert -d $domain --fullchainpath /etc/xray/xray-mini.crt --keypath /etc/xray/xray.key --ecc
-systemctl start xray@v2ray-tls
-systemctl start xray@v2ray-nontls
-systemctl start xray@vless-tls
-systemctl start xray@vless-nontls
-systemctl start xray@trojan
+systemctl start ws-nontls
+systemctl restart ws-nontls
 echo Done
 sleep 1.5
 clear
