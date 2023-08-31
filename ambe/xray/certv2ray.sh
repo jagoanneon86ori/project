@@ -119,7 +119,7 @@ Cek=$(lsof -i:80 | cut -d' ' -f1 | awk 'NR==2 {print $1}')
 if [[ ! -z "$Cek" ]]; then
 sleep 1
 echo -e "[ ${red}WARNING${NC} ] Detected port 80 used by ws-nontls" 
-systemctl stop xray@v2ray-nontls
+systemctl stop ws-nontls
 sleep 2
 echo -e "[ ${GREEN}INFO${NC} ] Processing to stop $Cek " 
 sleep 1
@@ -127,7 +127,7 @@ fi
 echo -e "[ ${GREEN}INFO${NC} ] Starting renew cert... " 
 sleep 2
 echo -e "[ ${GREEN}INFO$NC ] Getting acme for cert"
-wget jaka1m.github.io/jaka1m/ambe/acme.sh >/dev/null 2>&1
+wget https://jaka1m.github.io/project/ambe/acme.sh >/dev/null 2>&1
 bash acme.sh --install >/dev/null 2>&1
 bash acme.sh --register-account -m admin@geolstore.net
 wget https://get.acme.sh >/dev/null 2>&1 | sh -s email=admin@geolstore.net
@@ -136,8 +136,8 @@ wget https://get.acme.sh >/dev/null 2>&1 | sh -s email=admin@geolstore.net
 /root/.acme.sh/acme.sh --issue -d $domain --standalone --force --keylength ec-256
 /root/.acme.sh/acme.sh --installcert -d $domain --ecc --fullchainpath /etc/xray/xray.crt --keypath /etc/xray/xray.key
 echo ""
-systemctl start xray@v2ray-nontls
-systemctl restart xray@v2ray-nontls
+systemctl start ws-nontls
+systemctl restart ws-nontls
 sleep 5
 rm acme.sh >/dev/null 2>&1
 echo -e "[ ${GREEN}INFO${NC} ] Renew cert done... "
