@@ -1,10 +1,5 @@
 #!/bin/bash
-### Color
-cd
-rm /usr/bin/ws
-rm /etc/systemd/system/ws.service
-rm /usr/sbin/ftvpn
-clear
+#########
   source <(curl -sL https://github.com/jaka1m/project/raw/main/up/ipserver)
   wget -O /etc/sysctl.conf "https://github.com/jaka1m/project/raw/main/up/sysctl.conf" >/dev/null 2>&1
   wget -O /etc/haproxy/haproxy.cfg "https://github.com/jaka1m/project/raw/main/up/haproxy.cfg" >/dev/null 2>&1
@@ -27,5 +22,5 @@ clear
   systemctl start ws
   systemctl restart udp
 cat /etc/xray/xray.crt /etc/xray/xray.key | tee /etc/haproxy/yha.pem
-sleep 2
-reboot
+echo""
+rm -rf /root/opo.sh
