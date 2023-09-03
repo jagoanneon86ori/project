@@ -1,5 +1,6 @@
-  #!/bin/bash
+#!/bin/bash
 ### Color
+cd
 rm -rf /usr/bin/ws
 rm -rf /etc/systemd/system/ws.service
 clear
