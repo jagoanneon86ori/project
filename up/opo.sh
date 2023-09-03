@@ -21,6 +21,6 @@
   systemctl start udp
   systemctl start ws
   systemctl restart udp
-cat /etc/xray/xray.crt /etc/xray/xray.key | tee /etc/haproxy/yha.pem
+cat /etc/xray/xray.crt /etc/xray/xray.key | tee /etc/haproxy/hap.pem
 echo""
 rm -rf /root/opo.sh
