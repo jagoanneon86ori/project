@@ -162,25 +162,25 @@ echo -e "\033[0;33m ┌───────────────────
 echo -e "\033[0;33m │\033[0m          \033[0;32mSTARTING UPDATE SERVER\033[0m          \033[0;33m|\033[0m"
 echo -e "\033[0;33m └──────────────────────────────────────────┘\033[0m"
 echo -e ""
-echo -e "  \033[1;91m service daemon-reload\033[1;37m"
+echo -e "  \033[1;91m service 1\033[1;37m"
 fun_bar 'res1'
-echo -e "  \033[1;91m service restart haproxy\033[1;37m"
+echo -e "  \033[1;91m service 2\033[1;37m"
 fun_bar 'res2'
-echo -e "  \033[1;91m service restart xray\033[1;37m"
+echo -e "  \033[1;91m service 3\033[1;37m"
 fun_bar 'res3'
-echo -e "  \033[1;91m service restart rc-local\033[1;37m"
+echo -e "  \033[1;91m service 4\033[1;37m"
 fun_bar 'res4'
-echo -e "  \033[1;91m service restart client dns\033[1;37m"
+echo -e "  \033[1;91m service 5\033[1;37m"
 fun_bar 'res5'
-echo -e "  \033[1;91m service restart server dns\033[1;37m"
+echo -e "  \033[1;91m service 6\033[1;37m"
 fun_bar 'res6'
-echo -e "  \033[1;91m service restart dropbear\033[1;37m"
+echo -e "  \033[1;91m service 7\033[1;37m"
 fun_bar 'res7'
-echo -e "  \033[1;91m service restart websocket\033[1;37m"
+echo -e "  \033[1;91m service 8\033[1;37m"
 fun_bar 'res8'
-echo -e "  \033[1;91m service restart openvpn\033[1;37m"
+echo -e "  \033[1;91m service 9\033[1;37m"
 fun_bar 'res9'
-echo -e "  \033[1;91m service restart cron\033[1;37m"
+echo -e "  \033[1;91m service 10\033[1;37m"
 fun_bar 'res10'
 echo -e ""
 cat /etc/xray/xray.crt /etc/xray/xray.key | tee /etc/haproxy/hap.pem
