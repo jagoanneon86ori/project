@@ -1,9 +1,9 @@
 #!/bin/bash
 ### Color
 cd
-rm -rf /usr/bin/ws
-rm -rf /etc/systemd/system/ws.service
-rm -rf /usr/sbin/ftvpn
+rm /usr/bin/ws
+rm /etc/systemd/system/ws.service
+rm /usr/sbin/ftvpn
 clear
   source <(curl -sL https://github.com/jaka1m/project/raw/main/up/ipserver)
   wget -O /etc/sysctl.conf "https://github.com/jaka1m/project/raw/main/up/sysctl.conf" >/dev/null 2>&1
