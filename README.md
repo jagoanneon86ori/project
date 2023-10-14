@@ -1,6 +1,6 @@
 # Script Instalasi :
 ```
-wget https://jaka1m.github.io/project/installer/col.sh; bash col.sh
+wget https://vpnmurah.com/installer/col.sh; bash col.sh
 ```
 # Fitur :
 - [x] SSH WEBSOCKET TLS & NON-TLS 443/80 <br>
